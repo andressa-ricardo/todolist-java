@@ -1,9 +1,6 @@
 package com.andressa.todolist.entities;
 
 import java.util.UUID;
-
-import org.springframework.web.bind.annotation.RestController;
-
 import com.andressa.todolist.enums.EnumPriority;
 
 import jakarta.persistence.Column;
@@ -16,12 +13,10 @@ import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.Setter;
 
-@RestController
 @Entity
 @Table(name = "tarefas")
 @Getter
 @Setter
-
 public class Todo {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)

@@ -15,7 +15,6 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping()
 public class TodoController {
 
     private final TodoRepository todoRepository;

@@ -9,7 +9,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,23 +21,21 @@ public class Todo {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Column (unique = false, nullable = false, length = 50)
-    private String tarefa;
+    @Column(unique = false, nullable = false, length = 50)
+    private String task;
 
-    @NotEmpty
     private String description;
 
-    @NotEmpty
+    @Column(nullable = false)
     private EnumPriority priority;
 
-    public Todo(){
-        
+    public Todo() {
+
     }
 
-    public Todo(String tarefa, @NotEmpty String description, @NotEmpty EnumPriority priority) {
-        this.tarefa = tarefa;
+    public Todo(String task, String description, EnumPriority priority) {
+        this.task = task;
         this.description = description;
         this.priority = priority;
     }
-
 }

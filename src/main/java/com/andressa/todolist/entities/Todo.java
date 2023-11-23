@@ -24,6 +24,7 @@ public class Todo {
     @Column(unique = false, nullable = false, length = 50)
     private String task;
 
+    @Column(nullable = false)
     private String description;
 
     @Column(nullable = false)

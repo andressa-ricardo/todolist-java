@@ -2,15 +2,11 @@ package com.andressa.todolist.controller;
 
 import com.andressa.todolist.entities.Todo;
 import com.andressa.todolist.repository.TodoRepository;
-
-import jakarta.persistence.Column;
 import jakarta.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.UUID;
 
@@ -30,7 +26,6 @@ public class TodoController {
         return ResponseEntity.ok(todos);
     }
 
-    @Column(nullable = false)
 
     @PostMapping("/tarefa")
     public ResponseEntity<Todo> createTodo(@Valid @RequestBody Todo todo) {

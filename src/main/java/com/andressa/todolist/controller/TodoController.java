@@ -3,6 +3,7 @@ package com.andressa.todolist.controller;
 import com.andressa.todolist.entities.Todo;
 import com.andressa.todolist.repository.TodoRepository;
 
+import jakarta.persistence.Column;
 import jakarta.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,8 @@ public class TodoController {
         List<Todo> todos = todoRepository.findAll();
         return ResponseEntity.ok(todos);
     }
-   
+
+    @Column(nullable = false)
 
     @PostMapping("/tarefa")
     public ResponseEntity<Todo> createTodo(@Valid @RequestBody Todo todo) {
@@ -40,8 +42,7 @@ public class TodoController {
     @PutMapping("/tarefa/{id}")
     public ResponseEntity<Todo> updateTodo(
             @PathVariable UUID id,
-            @Valid @RequestBody Todo updatedTodo
-    ) {
+            @Valid @RequestBody Todo updatedTodo) {
         if (!todoRepository.existsById(id)) {
             return ResponseEntity.notFound().build();
         }
@@ -51,11 +52,13 @@ public class TodoController {
     }
 
     @DeleteMapping("/tarefa/{id}")
-    public ResponseEntity<Void> deleteTodoById(@PathVariable UUID id) {
+    public ResponseEntity<String> deleteTodoById(@PathVariable UUID id) {
         if (!todoRepository.existsById(id)) {
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Tarefa não encontrada");
         }
+
         todoRepository.deleteById(id);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok("Tarefa apagada");
     }
+
 }
